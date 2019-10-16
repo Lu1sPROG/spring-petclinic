@@ -5,6 +5,7 @@ DROP TABLE visits IF EXISTS;
 DROP TABLE pets IF EXISTS;
 DROP TABLE types IF EXISTS;
 DROP TABLE owners IF EXISTS;
+DROP TABLE products IF EXISTS;
 
 
 CREATE TABLE vets (
@@ -26,6 +27,12 @@ CREATE TABLE vet_specialties (
 );
 ALTER TABLE vet_specialties ADD CONSTRAINT fk_vet_specialties_vets FOREIGN KEY (vet_id) REFERENCES vets (id);
 ALTER TABLE vet_specialties ADD CONSTRAINT fk_vet_specialties_specialties FOREIGN KEY (specialty_id) REFERENCES specialties (id);
+
+CREATE TABLE products (
+  id   INTEGER IDENTITY PRIMARY KEY,
+  name VARCHAR(80)
+);
+CREATE INDEX products_name ON products (name);
 
 CREATE TABLE types (
   id   INTEGER IDENTITY PRIMARY KEY,

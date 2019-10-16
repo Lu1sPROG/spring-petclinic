@@ -16,8 +16,12 @@
 
 package org.springframework.samples.petclinic;
 
+import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.samples.petclinic.product.Product;
+import org.springframework.samples.petclinic.product.ProductRepository;
 
 /**
  * PetClinic Spring Boot Application.
@@ -31,5 +35,20 @@ public class PetClinicApplication {
     public static void main(String[] args) {
         SpringApplication.run(PetClinicApplication.class, args);
     }
+    
+    @Bean
+	public CommandLineRunner demo(ProductRepository repository) {
+		return (args) -> {
 
+			// fetch all customers
+			System.out.println("Products found with findAll():");
+			System.out.println("-------------------------------");
+			for (Product product : repository.findAll()) {
+				System.out.println(product.toString());
+			}
+			System.out.println("");
+
+	};
+
+}
 }
